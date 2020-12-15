@@ -1,5 +1,6 @@
 import IncorrectInfoError from '../errors/IncorrectInfoError';
 import InsufficientInfoError from '../errors/InsufficientInfoError';
+import { Coordinate } from '../types/coordinate.d';
 
 export enum RobotDirection {
   NORTH = 'NORTH',
@@ -13,11 +14,6 @@ export enum RobotRotation {
   RIGHT = 'RIGHT',
 }
 
-type Coordinate = {
-  x: number;
-  y: number;
-};
-
 class Robot {
   private isSafeMode: boolean = true;
   private positions: Coordinate = { x: 0, y: 0 };
@@ -26,10 +22,12 @@ class Robot {
 
   setSafeMode(isSafeMode: boolean) {
     this.isSafeMode = isSafeMode;
+    return this;
   }
 
   setDimensions(dimensions: Coordinate = { x: 5, y: 5 }) {
     this.dimensions = dimensions;
+    return this;
   }
 
   getSafeMode() {
