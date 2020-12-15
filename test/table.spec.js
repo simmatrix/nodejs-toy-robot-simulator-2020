@@ -11,7 +11,10 @@ import Robot from '../src/core/Robot';
 
 describe('TableClass Test', function () {
   it('should be able to place 1 robot at a specific location', function () {
-    const table = new Table({ x: 5, y: 5 });
+    const table = new Table({
+      dimensions: { x: 5, y: 5 },
+      isSafeMode: true
+    });
     const robot = new Robot();
     const placement = '1,2,NORTH';
     table.addRobot(robot).at(placement);
@@ -19,7 +22,10 @@ describe('TableClass Test', function () {
   });
 
   it('should be able to place 2 robots at 2 specific locations', function () {
-    const table = new Table({ x: 5, y: 5 });
+    const table = new Table({
+      dimensions: { x: 5, y: 5 },
+      isSafeMode: true
+    });
     const robot1 = new Robot();
     const robot2 = new Robot();
     const placement1 = '1,2,NORTH';
@@ -31,7 +37,10 @@ describe('TableClass Test', function () {
   });
 
   it('should be able to place an existing robot at a new location', function () {
-    const table = new Table({ x: 5, y: 5 });
+    const table = new Table({
+      dimensions: { x: 5, y: 5 },
+      isSafeMode: true
+    });
     const robot = new Robot();
     const initialPlacement = '1,2,NORTH';
     const newPlacement = '3,4,NORTH';
