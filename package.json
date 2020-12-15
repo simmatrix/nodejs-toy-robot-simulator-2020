@@ -7,7 +7,8 @@
     "compile": "./node_modules/.bin/tsc",
     "dev": "npm run compile && node dist/index.js",
     "start": "node dist/index.js",
-    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' ./node_modules/.bin/mocha -w -r ts-node/register test"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' ./node_modules/.bin/mocha --require ts-node/register --extensions ts test",
+    "test:watch": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' ./node_modules/.bin/mocha --require ts-node/register --extensions ts --watch --watch-files src,test"
   },
   "keywords": [
     "toy",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
+    "@types/node": "^14.14.13",
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "sinon": "^9.2.2",
