@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "compile": "./node_modules/.bin/tsc",
-    "dev": "npm run compile && node dist/index.js",
+    "compile": "rm -rf ./dist && ./node_modules/.bin/tsc",
     "start": "node dist/index.js",
     "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' ./node_modules/.bin/mocha --require ts-node/register --extensions ts test",
     "test:watch": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' ./node_modules/.bin/mocha --require ts-node/register --extensions ts --watch --watch-files src,test"
