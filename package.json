@@ -7,16 +7,22 @@
     "compile": "./node_modules/.bin/tsc",
     "dev": "npm run compile && node dist/index.js",
     "start": "node dist/index.js",
-    "test": "./node_modules/.bin/mocha --watch test"
+    "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' ./node_modules/.bin/mocha -w -r ts-node/register test"
   },
-  "keywords": ["toy", "robot"],
+  "keywords": [
+    "toy",
+    "robot"
+  ],
   "author": "Sim",
   "license": "ISC",
   "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
     "chai": "^4.2.0",
     "mocha": "^8.2.1",
     "sinon": "^9.2.2",
     "sinon-chai": "^3.5.0",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.3"
   }
 }
