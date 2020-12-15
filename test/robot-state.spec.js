@@ -10,14 +10,6 @@ import RobotState from '../src/core/RobotState';
 import Robot from '../src/core/Robot';
 
 describe('RobotStateClass Test', function () {
-  beforeEach(function () {
-    // sinon.stub(console);
-  });
-
-  afterEach(function () {
-    // sinon.verifyAndRestore();
-  });
-
   it('should be able to get the current state', function () {
     const robot = new Robot();
     const state = new RobotState(robot);

@@ -15,11 +15,11 @@ class RobotState implements IState {
     this.date = new Date().toISOString().slice(0, 19).replace('T', ' ');
   }
 
-  getState() {
+  getState(): State {
     return this.state;
   }
 
-  getDate() {
+  getDate(): string {
     return this.date;
   }
 }

@@ -10,19 +10,6 @@ import Table from '../src/core/Table';
 import Robot from '../src/core/Robot';
 
 describe('TableClass Test', function () {
-  beforeEach(function () {
-    // sinon.stub(console);
-  });
-
-  afterEach(function () {
-    // sinon.verifyAndRestore();
-  });
-
-  // it('should be able to validate whether it is a valid command', function () {
-  //   const finalPlacement = '1,2,NORTH';
-  //   expect(robot.report()).to.be.equal(finalPlacement);
-  // });
-
   it('should be able to place 1 robot at a specific location', function () {
     const table = new Table({ x: 5, y: 5 });
     const robot = new Robot();
@@ -49,7 +36,7 @@ describe('TableClass Test', function () {
     const initialPlacement = '1,2,NORTH';
     const newPlacement = '3,4,NORTH';
     table.addRobot(robot).at(initialPlacement);
-    table.place(table.getRobot()).at(newPlacement)
+    table.place(table.getRobot()).at(newPlacement);
     expect(table.getRobot().report()).to.be.equal(newPlacement);
   });
 });

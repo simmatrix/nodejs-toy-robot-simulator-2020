@@ -1,6 +1,8 @@
 import IncorrectInfoError from '../errors/IncorrectInfoError';
 import InsufficientInfoError from '../errors/InsufficientInfoError';
 import { Coordinate } from '../types/coordinate.d';
+import IState from '../types/state';
+import RobotState from './RobotState';
 
 export enum RobotDirection {
   NORTH = 'NORTH',
@@ -126,6 +128,16 @@ class Robot {
     } else {
       this.direction = directions[currentDirectionIndex];
     }
+  }
+
+  backup(): IState {
+    return new RobotState(this);
+  }
+
+  restore(state: IState) {
+    const _state = state.getState();
+    this.positions = _state.positions;
+    this.direction = _state.direction;
   }
 }
 

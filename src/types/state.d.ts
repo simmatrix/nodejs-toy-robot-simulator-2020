@@ -2,7 +2,7 @@ import { RobotDirection } from "../core/Robot";
 import { Coordinate } from "./coordinate";
 
 export default interface IState {
-  getState();
+  getState(): State;
   getDate(): string;
 }
 

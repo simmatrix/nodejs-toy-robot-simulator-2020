@@ -9,14 +9,6 @@ chai.use(sinonChai);
 import Robot, { RobotDirection, RobotRotation } from '../src/core/Robot';
 
 describe('RobotClass Test', function () {
-  beforeEach(function () {
-    // sinon.stub(console);
-  });
-
-  afterEach(function () {
-    // sinon.verifyAndRestore();
-  });
-
   describe('General', function () {
     const robot = new Robot();
 
@@ -27,18 +19,6 @@ describe('RobotClass Test', function () {
     it('should be able to turn off the safe mode', function () {
       robot.setSafeMode(false);
       expect(robot.getSafeMode()).to.be.false;
-    });
-  });
-
-  describe('Main', function () {
-    const robot = new Robot();
-
-    it('should be able to get the default position', function () {
-      expect(robot.getPosition()).to.deep.equal({ x: 0, y: 0 });
-    });
-
-    it('should be able to get the default direction', function () {
-      expect(robot.getDirection()).to.equal(RobotDirection.NORTH);
     });
 
     it('should be able to parse user input', function () {
@@ -56,6 +36,18 @@ describe('RobotClass Test', function () {
     it('should be throwing an error when giving incorrect placement info', function () {
       const placement = '2,3,WEEEEEEEST';
       expect(() => robot.parseInput(placement)).to.throw('Please specify a valid positions and direction');
+    });
+  });
+
+  describe('Main', function () {
+    const robot = new Robot();
+
+    it('should be able to get the default position', function () {
+      expect(robot.getPosition()).to.deep.equal({ x: 0, y: 0 });
+    });
+
+    it('should be able to get the default direction', function () {
+      expect(robot.getDirection()).to.equal(RobotDirection.NORTH);
     });
 
     it('report() - should be able to report the default position and direction in the required output format', function () {
@@ -92,11 +84,5 @@ describe('RobotClass Test', function () {
       robot.rotate(RobotRotation.RIGHT);
       expect(robot.report()).to.equal(newPlacement);
     });
-  });
-
-  describe('History', function () {
-    it('should be able to backup the current state', function () {});
-
-    it('should be able to restore to the previous state', function () {});
   });
 });
