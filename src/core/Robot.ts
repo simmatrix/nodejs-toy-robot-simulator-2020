@@ -1,3 +1,4 @@
+import ForbiddenMoveError from '../errors/ForbiddenMoveError';
 import IncorrectInfoError from '../errors/IncorrectInfoError';
 import InsufficientInfoError from '../errors/InsufficientInfoError';
 import { Coordinate } from '../types/coordinate.d';
@@ -85,22 +86,22 @@ class Robot {
     switch (this.direction) {
       case RobotDirection.NORTH:
         newPositionY = this.positions.y + step;
-        if (newPositionY > this.dimensions.y) newPositionY = this.dimensions.y;
+        if (newPositionY > this.dimensions.y) throw new ForbiddenMoveError();
         this.positions = { ...this.positions, y: newPositionY };
         break;
       case RobotDirection.SOUTH:
         newPositionY = this.positions.y - step;
-        if (newPositionY < 0) newPositionY = 0;
+        if (newPositionY < 0) throw new ForbiddenMoveError();
         this.positions = { ...this.positions, y: newPositionY };
         break;
       case RobotDirection.EAST:
         newPositionX = this.positions.x + step;
-        if (newPositionX > this.dimensions.x) newPositionX = this.dimensions.x;
+        if (newPositionX > this.dimensions.x) throw new ForbiddenMoveError();
         this.positions = { ...this.positions, x: newPositionX };
         break;
       case RobotDirection.WEST:
         newPositionX = this.positions.x - step;
-        if (newPositionX < 0) newPositionX = 0;
+        if (newPositionX < 0) throw new ForbiddenMoveError();
         this.positions = { ...this.positions, x: newPositionX };
         break;
       default:
