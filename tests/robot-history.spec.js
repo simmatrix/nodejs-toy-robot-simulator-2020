@@ -5,6 +5,6 @@ const expect = chai.expect;
 chai.should();
 chai.use(sinonChai);
 
-describe('HistoryClass Test', function () {
+describe('RobotHistoryClass Test', function () {
   
 });
