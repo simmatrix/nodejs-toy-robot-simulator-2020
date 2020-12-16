@@ -14,19 +14,19 @@ class Logger {
       console.log(message);
       return;
     }
-    console.log(Logger._color(message));
+    console.log(`\n\n${Logger._color(message)}\n`);
   }
 
   static info(message: string) {
-    console.log(chalk.green(message));
+    console.log(`\n\n${chalk.green(message)}\n`);
   }
 
   static success(message: string) {
-    console.log(chalk.black.bgGreen(message));
+    console.log(`\n\n${chalk.black.bgGreen(message)}\n`);
   }
 
   static error(message: string) {
-    console.log(chalk.white.bgRed(message));
+    console.log(`\n\n${chalk.white.bgRed(message)}\n`);
   }
 
   static printTitle(message: string) {

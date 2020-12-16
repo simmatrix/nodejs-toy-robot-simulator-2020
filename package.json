@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/figlet": "^1.2.1",
+    "@types/inquirer": "^7.3.1",
     "@types/mocha": "^8.2.0",
     "@types/node": "^14.14.13",
     "chai": "^4.2.0",
@@ -29,6 +30,8 @@
   },
   "dependencies": {
     "chalk": "^4.1.0",
-    "figlet": "^1.5.0"
+    "figlet": "^1.5.0",
+    "inquirer": "^7.3.3",
+    "inquirer-prompt-suggest": "^0.1.0"
   }
 }

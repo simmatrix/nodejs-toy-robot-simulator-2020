@@ -60,18 +60,18 @@ describe('RobotClass Test', function () {
       expect(robot.report()).to.equal(placement);
     });
 
-    it('move() - given it is now at the position of 0,0 and facing NORTH, should be able to move 2 steps up', function () {
+    it('move() - given it is now at the position of 0,0 and facing NORTH, should be able to move 1 step up', function () {
       const initialPlacement = '0,0,NORTH';
-      const newPlacement = '0,2,NORTH';
+      const newPlacement = '0,1,NORTH';
       robot.place(initialPlacement);
-      robot.move(2);
+      robot.move();
       expect(robot.report()).to.equal(newPlacement);
     });
 
     it('move() - should throw an error if moving towards the place that will result in falling off from the table', function () {
       const placment = '0,4,NORTH'; // moving on step up will cause it to fell off from table!
       robot.place(placment);
-      expect(() => robot.move(2)).to.throw('You cannot place at this coordinate as it will make your robot to fall off from the table!');
+      expect(() => robot.move()).to.throw('You cannot place at this coordinate as it will make your robot to fall off from the table!');
     });
 
     it('rotate() - given it is now facing NORTH, should be able to rotate to the right to face EAST', function () {

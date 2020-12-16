@@ -17,6 +17,14 @@ export enum RobotRotation {
   RIGHT = 'RIGHT',
 }
 
+export enum RobotCommand {
+  PLACE = 'PLACE',
+  MOVE = 'MOVE',
+  LEFT = 'LEFT',
+  RIGHT = 'RIGHT',
+  REPORT = 'REPORT',
+}
+
 class Robot {
   private isSafeMode: boolean = true;
   private positions: Coordinate = { x: 0, y: 0 };
@@ -79,14 +87,14 @@ class Robot {
     }
   }
 
-  move(step: number) {
+  move(step: number = 1) {
     let newPositionY = 0;
     let newPositionX = 0;
 
     switch (this.direction) {
       case RobotDirection.NORTH:
         newPositionY = this.positions.y + step;
-        if (newPositionY > this.dimensions.y) throw new ForbiddenMoveError();
+        if (newPositionY >= this.dimensions.y) throw new ForbiddenMoveError();
         this.positions = { ...this.positions, y: newPositionY };
         break;
       case RobotDirection.SOUTH:
@@ -96,7 +104,7 @@ class Robot {
         break;
       case RobotDirection.EAST:
         newPositionX = this.positions.x + step;
-        if (newPositionX > this.dimensions.x) throw new ForbiddenMoveError();
+        if (newPositionX >= this.dimensions.x) throw new ForbiddenMoveError();
         this.positions = { ...this.positions, x: newPositionX };
         break;
       case RobotDirection.WEST:

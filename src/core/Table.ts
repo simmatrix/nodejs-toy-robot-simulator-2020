@@ -31,7 +31,7 @@ class Table {
     return this;
   }
 
-  getRobot(number: number): Robot {
+  getRobot(number?: number): Robot {
     if (!this.robots || !this.robots.length) throw new NoRobotsOnTableError();
     if (number && (number < 0 || number > this.robots.length)) throw new RobotNotFoundError();
     if (number) return this.robots[number - 1];
