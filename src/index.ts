@@ -45,7 +45,7 @@ const subsequentQuestions = [
       try {
         switch (userCommand) {
           case RobotCommand.PLACE:
-            table.place(table.getRobot()).at(input);
+            table.place(table.getRobot()).at(input.split(' ')[1]);
             break;
           case RobotCommand.MOVE:
             table.getRobot().move();
