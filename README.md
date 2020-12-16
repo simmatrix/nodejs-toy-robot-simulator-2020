@@ -2,7 +2,9 @@
 
 ![Toy Robot Screenshot](https://raw.githubusercontent.com/simmatrix/nodejs-toy-robot-simulator-2020/master/program.png)
 
-This is a NodeJS command-line application. You may refer to the full problem statement over [here](https://github.com/simmatrix/nodejs-toy-robot-simulator-2020/blob/master/PROBLEM.md).
+This is a NodeJS command-line application. You may refer to the full problem statement over [here](https://github.com/simmatrix/nodejs-toy-robot-simulator-2020/blob/master/PROBLEM.md). Below is a GIF demonstrating the whole app. If you prefer the 1-minute video, here's the [link](https://drive.google.com/file/d/1TT7BpymY9uEHx0o9nNTxziuonNfu2q_r/view?usp=sharing).
+
+![Toy Robot Screenshot](https://raw.githubusercontent.com/simmatrix/nodejs-toy-robot-simulator-2020/master/toy-robot-simulator.gif)
 
 # Unit Testing
 
@@ -18,6 +20,8 @@ Assuming that we would only have 5x5 units of "table" for the toy robot to roam 
 
 
 # Development Setup
-- Node v15.3.0
-- NPM v7.0.14
 
+- This is developed with Node v15.3.0 and NPM v7.0.14
+- TDD development with `npm run test:watch`
+- Run the application with `npm start`
+- To plainly run the test scripts `npm test`
