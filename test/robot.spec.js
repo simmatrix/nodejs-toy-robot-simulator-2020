@@ -18,23 +18,6 @@ describe('RobotClass Test', function () {
       robot.setSafeMode(false);
       expect(robot.getSafeMode()).to.be.false;
     });
-
-    it('should be able to parse user input', function () {
-      const placement = '2,3,SOUTH';
-      const parsedInput = robot.parseInput(placement);
-      expect(parsedInput.positions).to.deep.equal({ x: 2, y: 3 });
-      expect(parsedInput.direction).to.equal(RobotDirection.SOUTH);
-    });
-
-    it('should be throwing an error when giving insufficient placement info', function () {
-      const placement = '2,3';
-      expect(() => robot.parseInput(placement)).to.throw('Please specify both of the positions and direction');
-    });
-
-    it('should be throwing an error when giving incorrect placement info', function () {
-      const placement = '2,3,WEEEEEEEST';
-      expect(() => robot.parseInput(placement)).to.throw('Please specify a valid positions and direction');
-    });
   });
 
   describe('Main', function () {

@@ -7,7 +7,6 @@ export default interface IRobot {
   getPosition(): RobotCoordinate;
   getDirection(): RobotDirection;
   report(): string;
-  parseInput(placement: string): RobotInput | Error;
   place(placement: string): void | Error;
   move(step?: number): void | Error;
   rotate(rotation: string): void;
@@ -21,6 +20,10 @@ export interface IRobotMoverComponent {
 
 export interface IRobotMover {
   move(direction: RobotDirection, positions: RobotCoordinate, dimensions: RobotCoordinate, step?: number): RobotCoordinate;
+}
+
+export interface IRobotPlacer {
+  parseInput(placement: string): RobotInput | Error;
 }
 
 export enum RobotDirection {

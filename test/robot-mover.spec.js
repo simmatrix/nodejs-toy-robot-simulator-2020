@@ -5,7 +5,7 @@ import { RobotDirection } from '../src/types/robot';
 const expect = chai.expect;
 chai.should();
 
-describe('RobotMover Test', function () {
+describe('RobotMoverClass Test', function () {
   const mover = RobotMover.getInstance();
   const tableDimension = { x: 5, y: 5 };
   const startingPosition = { x: 2, y: 2 };
