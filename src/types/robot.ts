@@ -26,6 +26,10 @@ export interface IRobotPlacer {
   parseInput(placement: string): RobotInput | Error;
 }
 
+export interface IRobotRotater {
+  rotate(currentDirection: RobotDirection, rotation: string): RobotDirection;
+}
+
 export enum RobotDirection {
   NORTH = 'NORTH',
   SOUTH = 'SOUTH',

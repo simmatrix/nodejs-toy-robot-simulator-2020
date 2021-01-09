@@ -1,19 +1,21 @@
 import IState from '../../types/state';
-import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, RobotRotation, RobotInput } from '../../types/robot';
+import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, RobotInput, IRobotRotater } from '../../types/robot';
 import RobotState from '../RobotState';
 
 class Robot implements IRobot {
   protected mover: IRobotMover;
   protected placer: IRobotPlacer;
+  protected rotater: IRobotRotater;
 
   private isSafeMode: boolean = true;
   private positions: RobotCoordinate = { x: 0, y: 0 };
   private direction: RobotDirection = RobotDirection.NORTH;
   private dimensions: RobotCoordinate = { x: 5, y: 5 };
 
-  constructor(mover: IRobotMover, placer: IRobotPlacer) {
+  constructor(mover: IRobotMover, placer: IRobotPlacer, rotater: IRobotRotater) {
     this.mover = mover;
     this.placer = placer;
+    this.rotater = rotater;
   }
 
   setSafeMode(isSafeMode: boolean): IRobot {
@@ -61,24 +63,10 @@ class Robot implements IRobot {
   }
 
   rotate(rotation: string): void {
-    const directions = [RobotDirection.NORTH, RobotDirection.EAST, RobotDirection.SOUTH, RobotDirection.WEST];
-    let currentDirectionIndex = directions.indexOf(this.direction);
-
-    switch (rotation) {
-      case RobotRotation.LEFT:
-        currentDirectionIndex--;
-        break;
-      case RobotRotation.RIGHT:
-        currentDirectionIndex++;
-        break;
-    }
-
-    if (currentDirectionIndex < 0) {
-      this.direction = RobotDirection.WEST;
-    } else if (currentDirectionIndex > 3) {
-      this.direction = RobotDirection.NORTH;
-    } else {
-      this.direction = directions[currentDirectionIndex];
+    try {
+      this.direction = this.rotater.rotate(this.direction, rotation);
+    } catch (error) {
+      throw error;
     }
   }
 
