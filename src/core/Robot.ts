@@ -2,7 +2,7 @@ import ForbiddenMoveError from '../errors/ForbiddenMoveError';
 import IncorrectInfoError from '../errors/IncorrectInfoError';
 import InsufficientInfoError from '../errors/InsufficientInfoError';
 import IState from '../types/state';
-import IRobot, { RobotCoordinate, RobotDirection, RobotRotation } from '../types/robot';
+import IRobot, { RobotCoordinate, RobotDirection, RobotRotation, RobotInput } from '../types/robot';
 import RobotState from './RobotState';
 
 class Robot implements IRobot {
@@ -37,7 +37,7 @@ class Robot implements IRobot {
     return `${Object.values(this.getPosition()).join(',')},${this.getDirection()}`;
   }
 
-  parseInput(placement: string): { positions: RobotCoordinate; direction: RobotDirection } | Error {
+  parseInput(placement: string): RobotInput | Error {
     try {
       const _placement = placement.split(',').map((p) => p.trim());
       if (_placement.length < 3) throw new InsufficientInfoError();
@@ -59,7 +59,7 @@ class Robot implements IRobot {
 
   place(placement: string): void | Error {
     try {
-      const parsedInput = this.parseInput(placement) as { positions: RobotCoordinate; direction: RobotDirection };
+      const parsedInput = this.parseInput(placement) as RobotInput;
       this.positions = parsedInput.positions;
       this.direction = parsedInput.direction;
     } catch (error) {

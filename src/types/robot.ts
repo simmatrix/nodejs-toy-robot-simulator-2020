@@ -7,12 +7,12 @@ export default interface IRobot {
   getPosition(): RobotCoordinate;
   getDirection(): RobotDirection;
   report(): string;
-  parseInput(placement: string): { positions: RobotCoordinate; direction: RobotDirection } | Error;
+  parseInput(placement: string): RobotInput | Error;
   place(placement: string): void | Error;
   move(step?: number): void | Error;
   rotate(rotation: string): void;
   backup(): IState;
-  restore(state: IState): void
+  restore(state: IState): void;
 }
 
 export enum RobotDirection {
@@ -21,11 +21,6 @@ export enum RobotDirection {
   EAST = 'EAST',
   WEST = 'WEST',
 }
-
-export type RobotCoordinate = {
-  x: number;
-  y: number;
-};
 
 export enum RobotRotation {
   LEFT = 'LEFT',
@@ -39,3 +34,13 @@ export enum RobotCommand {
   RIGHT = 'RIGHT',
   REPORT = 'REPORT',
 }
+
+export type RobotCoordinate = {
+  x: number;
+  y: number;
+};
+
+export type RobotInput = {
+  positions: RobotCoordinate;
+  direction: RobotDirection;
+};
