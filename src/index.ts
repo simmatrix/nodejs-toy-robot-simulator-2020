@@ -1,7 +1,8 @@
 import Logger from './utils/logger';
 import Table from './core/Table';
 import inquirer from 'inquirer';
-import Robot, { RobotCommand, RobotRotation } from './core/Robot';
+import Robot from './core/Robot';
+import { RobotCommand, RobotRotation } from './types/robot';
 import chalk from 'chalk';
 
 inquirer.registerPrompt('suggest', require('inquirer-prompt-suggest'));

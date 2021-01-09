@@ -1,63 +1,43 @@
 import ForbiddenMoveError from '../errors/ForbiddenMoveError';
 import IncorrectInfoError from '../errors/IncorrectInfoError';
 import InsufficientInfoError from '../errors/InsufficientInfoError';
-import { Coordinate } from '../types/coordinate.d';
 import IState from '../types/state';
+import IRobot, { RobotCoordinate, RobotDirection, RobotRotation } from '../types/robot';
 import RobotState from './RobotState';
 
-export enum RobotDirection {
-  NORTH = 'NORTH',
-  SOUTH = 'SOUTH',
-  EAST = 'EAST',
-  WEST = 'WEST',
-}
-
-export enum RobotRotation {
-  LEFT = 'LEFT',
-  RIGHT = 'RIGHT',
-}
-
-export enum RobotCommand {
-  PLACE = 'PLACE',
-  MOVE = 'MOVE',
-  LEFT = 'LEFT',
-  RIGHT = 'RIGHT',
-  REPORT = 'REPORT',
-}
-
-class Robot {
+class Robot implements IRobot {
   private isSafeMode: boolean = true;
-  private positions: Coordinate = { x: 0, y: 0 };
+  private positions: RobotCoordinate = { x: 0, y: 0 };
   private direction: RobotDirection = RobotDirection.NORTH;
-  private dimensions: Coordinate = { x: 5, y: 5 };
+  private dimensions: RobotCoordinate = { x: 5, y: 5 };
 
-  setSafeMode(isSafeMode: boolean) {
+  setSafeMode(isSafeMode: boolean): IRobot {
     this.isSafeMode = isSafeMode;
     return this;
   }
 
-  setDimensions(dimensions: Coordinate = { x: 5, y: 5 }) {
+  setDimensions(dimensions: RobotCoordinate = { x: 5, y: 5 }): IRobot {
     this.dimensions = dimensions;
     return this;
   }
 
-  getSafeMode() {
+  getSafeMode(): boolean {
     return this.isSafeMode;
   }
 
-  getPosition() {
+  getPosition(): RobotCoordinate {
     return this.positions;
   }
 
-  getDirection() {
+  getDirection(): RobotDirection {
     return this.direction;
   }
 
-  report() {
+  report(): string {
     return `${Object.values(this.getPosition()).join(',')},${this.getDirection()}`;
   }
 
-  parseInput(placement: string): { positions: Coordinate; direction: RobotDirection } | Error {
+  parseInput(placement: string): { positions: RobotCoordinate; direction: RobotDirection } | Error {
     try {
       const _placement = placement.split(',').map((p) => p.trim());
       if (_placement.length < 3) throw new InsufficientInfoError();
@@ -69,7 +49,7 @@ class Robot {
         throw new IncorrectInfoError();
 
       return {
-        positions: { x: parseInt(_placement[0]), y: parseInt(_placement[1]) } as Coordinate,
+        positions: { x: parseInt(_placement[0]), y: parseInt(_placement[1]) } as RobotCoordinate,
         direction: _placement[2] as RobotDirection,
       };
     } catch (error) {
@@ -77,9 +57,9 @@ class Robot {
     }
   }
 
-  place(placement: string) {
+  place(placement: string): void | Error {
     try {
-      const parsedInput = this.parseInput(placement) as { positions: Coordinate; direction: RobotDirection };
+      const parsedInput = this.parseInput(placement) as { positions: RobotCoordinate; direction: RobotDirection };
       this.positions = parsedInput.positions;
       this.direction = parsedInput.direction;
     } catch (error) {
@@ -87,7 +67,8 @@ class Robot {
     }
   }
 
-  move(step: number = 1) {
+  move(step?: number): void | Error {
+    step = step || 1;
     let newPositionY = 0;
     let newPositionX = 0;
 
@@ -117,7 +98,7 @@ class Robot {
     }
   }
 
-  rotate(rotation: string) {
+  rotate(rotation: string): void {
     const directions = [RobotDirection.NORTH, RobotDirection.EAST, RobotDirection.SOUTH, RobotDirection.WEST];
     let currentDirectionIndex = directions.indexOf(this.direction);
 
@@ -143,7 +124,7 @@ class Robot {
     return new RobotState(this);
   }
 
-  restore(state: IState) {
+  restore(state: IState): void {
     const _state = state.getState();
     this.positions = _state.positions;
     this.direction = _state.direction;

@@ -1,22 +1,21 @@
 import NoRobotsOnTableError from '../errors/NoRobotsOnTableError';
 import RobotNotFoundError from '../errors/RobotNotFoundError';
-import { Coordinate } from '../types/coordinate.d';
-import Robot from './Robot';
+import IRobot, { RobotCoordinate } from '../types/robot';
 
 class Table {
-  private dimensions: Coordinate = { x: 5, y: 5 };
+  private dimensions: RobotCoordinate = { x: 5, y: 5 };
   private isSafeMode: boolean = true;
 
-  private robots: Robot[] = [];
-  private currentRobot: Robot;
+  private robots: IRobot[] = [];
+  private currentRobot: IRobot;
 
-  constructor({ dimensions, isSafeMode }: { dimensions: Coordinate; isSafeMode: boolean }) {
+  constructor({ dimensions, isSafeMode }: { dimensions: RobotCoordinate; isSafeMode: boolean }) {
     this.dimensions = dimensions;
     this.isSafeMode = isSafeMode;
     this.currentRobot = this.robots[this.robots.length - 1];
   }
 
-  place(robot?: Robot) {
+  place(robot?: IRobot) {
     if (robot) this.currentRobot = robot;
     return this;
   }
@@ -25,13 +24,13 @@ class Table {
     this.currentRobot.setDimensions(this.dimensions).setSafeMode(this.isSafeMode).place(comamnd);
   }
 
-  addRobot(robot: Robot) {
+  addRobot(robot: IRobot) {
     this.robots.push(robot);
     this.currentRobot = robot;
     return this;
   }
 
-  getRobot(number?: number): Robot {
+  getRobot(number?: number): IRobot {
     if (!this.robots || !this.robots.length) throw new NoRobotsOnTableError();
     if (number && (number < 0 || number > this.robots.length)) throw new RobotNotFoundError();
     if (number) return this.robots[number - 1];

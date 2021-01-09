@@ -7,7 +7,8 @@ chai.should();
 chai.use(sinonChai);
 
 import RobotHistory from '../src/core/RobotHistory';
-import Robot, { RobotRotation } from '../src/core/Robot';
+import Robot from '../src/core/Robot';
+import { RobotRotation } from '../src/types/robot';
 
 describe('RobotHistoryClass Test', function () {
   const robot = new Robot();

@@ -1,5 +1,4 @@
-import { RobotDirection } from "../core/Robot";
-import { Coordinate } from "./coordinate";
+import { RobotDirection, RobotCoordinate } from "./robot";
 
 export default interface IState {
   getState(): State;
@@ -7,6 +6,6 @@ export default interface IState {
 }
 
 export type State = {
-  positions: Coordinate,
+  positions: RobotCoordinate,
   direction: RobotDirection
 }

@@ -1,5 +1,5 @@
 import RobotRequiredError from '../errors/RobotRequiredError';
-import IState, { State } from '../types/state.d';
+import IState, { State } from '../types/state';
 import Robot from './Robot';
 
 class RobotState implements IState {

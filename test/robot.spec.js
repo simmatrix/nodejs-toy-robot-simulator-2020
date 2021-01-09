@@ -6,7 +6,8 @@ const expect = chai.expect;
 chai.should();
 chai.use(sinonChai);
 
-import Robot, { RobotDirection, RobotRotation } from '../src/core/Robot';
+import Robot from '../src/core/Robot';
+import { RobotDirection, RobotRotation } from '../src/types/robot';
 
 describe('RobotClass Test', function () {
   describe('General', function () {
