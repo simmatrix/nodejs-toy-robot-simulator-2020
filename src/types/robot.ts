@@ -30,6 +30,10 @@ export interface IRobotRotater {
   rotate(currentDirection: RobotDirection, rotation: string): RobotDirection;
 }
 
+export interface IRobotReporter {
+  report(positions: RobotCoordinate, direction: RobotDirection): string;
+}
+
 export enum RobotDirection {
   NORTH = 'NORTH',
   SOUTH = 'SOUTH',

@@ -1,21 +1,23 @@
 import IState from '../../types/state';
-import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, RobotInput, IRobotRotater, RobotRotation } from '../../types/robot';
+import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, RobotInput, IRobotRotater, RobotRotation, IRobotReporter } from '../../types/robot';
 import RobotState from '../RobotState';
 
 class Robot implements IRobot {
   protected mover: IRobotMover;
   protected placer: IRobotPlacer;
   protected rotater: IRobotRotater;
+  protected reporter: IRobotReporter;
 
   private isSafeMode: boolean = true;
   private positions: RobotCoordinate = { x: 0, y: 0 };
   private direction: RobotDirection = RobotDirection.NORTH;
   private dimensions: RobotCoordinate = { x: 5, y: 5 };
 
-  constructor(mover: IRobotMover, placer: IRobotPlacer, rotater: IRobotRotater) {
+  constructor(mover: IRobotMover, placer: IRobotPlacer, rotater: IRobotRotater, reporter: IRobotReporter) {
     this.mover = mover;
     this.placer = placer;
     this.rotater = rotater;
+    this.reporter = reporter;
   }
 
   setSafeMode(isSafeMode: boolean): IRobot {
@@ -41,7 +43,11 @@ class Robot implements IRobot {
   }
 
   report(): string {
-    return `${Object.values(this.getPosition()).join(',')},${this.getDirection()}`;
+    try {
+      return this.reporter.report(this.positions, this.direction);
+    } catch (error) {
+      throw error;
+    }
   }
 
   place(placement: string): void | Error {
