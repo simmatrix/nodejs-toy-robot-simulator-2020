@@ -9,7 +9,7 @@ export default interface IRobot {
   report(): string;
   place(placement: string): void | Error;
   move(step?: number): void | Error;
-  rotate(rotation: string): void;
+  rotate(rotation: RobotRotation): void;
   backup(): IState;
   restore(state: IState): void;
 }

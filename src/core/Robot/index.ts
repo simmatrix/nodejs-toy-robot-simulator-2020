@@ -1,5 +1,5 @@
 import IState from '../../types/state';
-import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, RobotInput, IRobotRotater } from '../../types/robot';
+import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, RobotInput, IRobotRotater, RobotRotation } from '../../types/robot';
 import RobotState from '../RobotState';
 
 class Robot implements IRobot {
@@ -62,7 +62,7 @@ class Robot implements IRobot {
     }
   }
 
-  rotate(rotation: string): void {
+  rotate(rotation: RobotRotation): void {
     try {
       this.direction = this.rotater.rotate(this.direction, rotation);
     } catch (error) {
