@@ -1,17 +1,14 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 
 const expect = chai.expect;
 chai.should();
-chai.use(sinonChai);
 
 import RobotHistory from '../src/core/RobotHistory';
-import Robot from '../src/core/Robot';
+import robotFactory from '../src/core/Robot/factory';
 import { RobotRotation } from '../src/types/robot';
 
 describe('RobotHistoryClass Test', function () {
-  const robot = new Robot();
+  const robot = robotFactory();
   const history = new RobotHistory(robot);
 
   it('should be able to see isEmpty as true at the beginning', function () {

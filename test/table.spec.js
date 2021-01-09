@@ -1,13 +1,10 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 
 const expect = chai.expect;
 chai.should();
-chai.use(sinonChai);
 
 import Table from '../src/core/Table';
-import Robot from '../src/core/Robot';
+import robotFactory from '../src/core/Robot/factory';
 
 describe('TableClass Test', function () {
   it('should be able to place 1 robot at a specific location', function () {
@@ -15,7 +12,7 @@ describe('TableClass Test', function () {
       dimensions: { x: 5, y: 5 },
       isSafeMode: true
     });
-    const robot = new Robot();
+    const robot = robotFactory();
     const placement = '1,2,NORTH';
     table.addRobot(robot).at(placement);
     expect(table.getRobot().report()).to.be.equal(placement);
@@ -26,8 +23,8 @@ describe('TableClass Test', function () {
       dimensions: { x: 5, y: 5 },
       isSafeMode: true
     });
-    const robot1 = new Robot();
-    const robot2 = new Robot();
+    const robot1 = robotFactory();
+    const robot2 = robotFactory();
     const placement1 = '1,2,NORTH';
     const placement2 = '3,4,SOUTH';
     table.addRobot(robot1).at(placement1);
@@ -41,7 +38,7 @@ describe('TableClass Test', function () {
       dimensions: { x: 5, y: 5 },
       isSafeMode: true
     });
-    const robot = new Robot();
+    const robot = robotFactory();
     const initialPlacement = '1,2,NORTH';
     const newPlacement = '3,4,NORTH';
     table.addRobot(robot).at(initialPlacement);

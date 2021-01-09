@@ -1,17 +1,14 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 
 const expect = chai.expect;
 chai.should();
-chai.use(sinonChai);
 
-import Robot from '../src/core/Robot';
 import { RobotDirection, RobotRotation } from '../src/types/robot';
+import robotFactory from '../src/core/Robot/factory';
 
 describe('RobotClass Test', function () {
   describe('General', function () {
-    const robot = new Robot();
+    const robot = robotFactory();
 
     it('should be able to see default safe mode as on', function () {
       expect(robot.getSafeMode()).to.be.true;
@@ -41,7 +38,7 @@ describe('RobotClass Test', function () {
   });
 
   describe('Main', function () {
-    const robot = new Robot();
+    const robot = robotFactory();
 
     it('should be able to get the default position', function () {
       expect(robot.getPosition()).to.deep.equal({ x: 0, y: 0 });

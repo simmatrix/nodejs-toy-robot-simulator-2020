@@ -1,9 +1,9 @@
 import Logger from './utils/logger';
 import Table from './core/Table';
 import inquirer from 'inquirer';
-import Robot from './core/Robot';
 import { RobotCommand, RobotRotation } from './types/robot';
 import chalk from 'chalk';
+import robotFactory from './core/Robot/factory';
 
 inquirer.registerPrompt('suggest', require('inquirer-prompt-suggest'));
 
@@ -12,7 +12,7 @@ const table = new Table({
   isSafeMode: true,
 });
 
-const robot = new Robot();
+const robot = robotFactory();
 
 const initialQuestion = [
   {

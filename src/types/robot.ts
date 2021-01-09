@@ -15,6 +15,14 @@ export default interface IRobot {
   restore(state: IState): void;
 }
 
+export interface IRobotMoverComponent {
+  move(): RobotCoordinate;
+}
+
+export interface IRobotMover {
+  move(direction: RobotDirection, positions: RobotCoordinate, dimensions: RobotCoordinate, step?: number): RobotCoordinate;
+}
+
 export enum RobotDirection {
   NORTH = 'NORTH',
   SOUTH = 'SOUTH',

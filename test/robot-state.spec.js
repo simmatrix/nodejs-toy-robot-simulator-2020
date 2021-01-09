@@ -1,17 +1,14 @@
 import chai from 'chai';
-import sinon from 'sinon';
-import sinonChai from 'sinon-chai';
 
 const expect = chai.expect;
 chai.should();
-chai.use(sinonChai);
 
 import RobotState from '../src/core/RobotState';
-import Robot from '../src/core/Robot';
+import robotFactory from '../src/core/Robot/factory';
 
 describe('RobotStateClass Test', function () {
   it('should be able to get the current state', function () {
-    const robot = new Robot();
+    const robot = robotFactory();
     const state = new RobotState(robot);
     expect(state.getState()).to.deep.equal({
       positions: robot.getPosition(),

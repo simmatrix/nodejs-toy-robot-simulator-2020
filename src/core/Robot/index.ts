@@ -1,15 +1,19 @@
-import ForbiddenMoveError from '../errors/ForbiddenMoveError';
-import IncorrectInfoError from '../errors/IncorrectInfoError';
-import InsufficientInfoError from '../errors/InsufficientInfoError';
-import IState from '../types/state';
-import IRobot, { RobotCoordinate, RobotDirection, RobotRotation, RobotInput } from '../types/robot';
-import RobotState from './RobotState';
+import IncorrectInfoError from '../../errors/IncorrectInfoError';
+import InsufficientInfoError from '../../errors/InsufficientInfoError';
+import IState from '../../types/state';
+import IRobot, { IRobotMover, RobotCoordinate, RobotDirection, RobotRotation, RobotInput } from '../../types/robot';
+import RobotState from '../RobotState';
 
 class Robot implements IRobot {
+  protected mover: IRobotMover;
   private isSafeMode: boolean = true;
   private positions: RobotCoordinate = { x: 0, y: 0 };
   private direction: RobotDirection = RobotDirection.NORTH;
   private dimensions: RobotCoordinate = { x: 5, y: 5 };
+
+  constructor(mover: IRobotMover) {
+    this.mover = mover;
+  }
 
   setSafeMode(isSafeMode: boolean): IRobot {
     this.isSafeMode = isSafeMode;
@@ -68,33 +72,10 @@ class Robot implements IRobot {
   }
 
   move(step?: number): void | Error {
-    step = step || 1;
-    let newPositionY = 0;
-    let newPositionX = 0;
-
-    switch (this.direction) {
-      case RobotDirection.NORTH:
-        newPositionY = this.positions.y + step;
-        if (newPositionY >= this.dimensions.y) throw new ForbiddenMoveError();
-        this.positions = { ...this.positions, y: newPositionY };
-        break;
-      case RobotDirection.SOUTH:
-        newPositionY = this.positions.y - step;
-        if (newPositionY < 0) throw new ForbiddenMoveError();
-        this.positions = { ...this.positions, y: newPositionY };
-        break;
-      case RobotDirection.EAST:
-        newPositionX = this.positions.x + step;
-        if (newPositionX >= this.dimensions.x) throw new ForbiddenMoveError();
-        this.positions = { ...this.positions, x: newPositionX };
-        break;
-      case RobotDirection.WEST:
-        newPositionX = this.positions.x - step;
-        if (newPositionX < 0) throw new ForbiddenMoveError();
-        this.positions = { ...this.positions, x: newPositionX };
-        break;
-      default:
-        throw new IncorrectInfoError();
+    try {
+      this.positions = this.mover.move(this.direction, this.positions, this.dimensions, step);
+    } catch (error) {
+      throw error;
     }
   }
 
