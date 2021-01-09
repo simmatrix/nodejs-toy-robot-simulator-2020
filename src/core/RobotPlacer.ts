@@ -3,11 +3,11 @@ import InsufficientInfoError from "../errors/InsufficientInfoError";
 import { IRobotPlacer, RobotCoordinate, RobotDirection, RobotInput } from "../types/robot";
 
 class RobotPlacer implements IRobotPlacer {
-  private static instance: RobotPlacer;
+  private static instance: IRobotPlacer;
 
   private constructor () {}
 
-  public static getInstance(): RobotPlacer {
+  public static getInstance(): IRobotPlacer {
     if (!RobotPlacer.instance) {
       RobotPlacer.instance = new RobotPlacer();
     }

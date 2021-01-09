@@ -6,11 +6,11 @@ import RobotMoverSouth from './RobotMoverSouth';
 import RobotMoverWest from './RobotMoverWest';
 
 class RobotMover implements IRobotMover {
-  private static instance: RobotMover;
+  private static instance: IRobotMover;
 
   private constructor () {}
 
-  public static getInstance(): RobotMover {
+  public static getInstance(): IRobotMover {
     if (!RobotMover.instance) {
       RobotMover.instance = new RobotMover();
     }
