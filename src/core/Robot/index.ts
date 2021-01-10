@@ -62,7 +62,7 @@ class Robot implements IRobot {
 
   move(step?: number): void | Error {
     try {
-      this.positions = this.mover.move(this.direction, this.positions, this.dimensions, step);
+      this.positions = this.mover.move(this.direction, this.positions, this.dimensions, step) as RobotCoordinate;
     } catch (error) {
       throw error;
     }
@@ -70,7 +70,7 @@ class Robot implements IRobot {
 
   rotate(rotation: RobotRotation): void {
     try {
-      this.direction = this.rotater.rotate(this.direction, rotation);
+      this.direction = this.rotater.rotate(this.direction, rotation) as RobotDirection;
     } catch (error) {
       throw error;
     }

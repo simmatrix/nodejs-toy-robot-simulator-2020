@@ -20,7 +20,7 @@ export interface IRobotMoverComponent {
 }
 
 export interface IRobotMover {
-  move(direction: RobotDirection, positions: RobotCoordinate, dimensions: RobotCoordinate, step?: number): RobotCoordinate;
+  move(direction: RobotDirection, positions: RobotCoordinate, dimensions: RobotCoordinate, step?: number): RobotCoordinate | Error;
 }
 
 export interface IRobotPlacer {
@@ -28,7 +28,7 @@ export interface IRobotPlacer {
 }
 
 export interface IRobotRotater {
-  rotate(currentDirection: RobotDirection, rotation: string): RobotDirection;
+  rotate(currentDirection: RobotDirection, rotation: RobotRotation): RobotDirection | Error;
 }
 
 export interface IRobotReporter {

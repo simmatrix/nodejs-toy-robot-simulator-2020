@@ -22,7 +22,7 @@ class RobotMover implements IRobotMover {
     positions: RobotCoordinate,
     dimensions: RobotCoordinate,
     step?: number
-  ): RobotCoordinate {
+  ): RobotCoordinate | Error {
     try {
       switch (direction) {
         case RobotDirection.NORTH:

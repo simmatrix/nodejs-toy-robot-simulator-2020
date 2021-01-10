@@ -12,7 +12,7 @@ class RobotRotater implements IRobotRotater {
     return RobotRotater.instance;
   }
 
-  public rotate(currentDirection: RobotDirection, rotation: string): RobotDirection {
+  public rotate(currentDirection: RobotDirection, rotation: RobotRotation): RobotDirection | Error {
     try {
       const directions = [RobotDirection.NORTH, RobotDirection.EAST, RobotDirection.SOUTH, RobotDirection.WEST];
       let currentDirectionIndex = directions.indexOf(currentDirection);
