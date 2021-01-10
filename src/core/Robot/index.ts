@@ -3,10 +3,10 @@ import IRobot, { IRobotMover, IRobotPlacer, RobotCoordinate, RobotDirection, Rob
 import RobotState from '../RobotState';
 
 class Robot implements IRobot {
-  protected mover: IRobotMover;
-  protected placer: IRobotPlacer;
-  protected rotater: IRobotRotater;
-  protected reporter: IRobotReporter;
+  private mover: IRobotMover;
+  private placer: IRobotPlacer;
+  private rotater: IRobotRotater;
+  private reporter: IRobotReporter;
 
   private isSafeMode: boolean = true;
   private positions: RobotCoordinate = { x: 0, y: 0 };
