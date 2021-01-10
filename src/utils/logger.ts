@@ -14,19 +14,31 @@ class Logger {
       console.log(message);
       return;
     }
-    console.log(`\n\n${Logger._color(message)}\n`);
+    console.log(Logger._color(message));
   }
 
   static info(message: string) {
-    console.log(`\n\n${chalk.green(message)}\n`);
+    Logger.newLine(2);
+    console.log(chalk.green(message));
+    Logger.newLine();
   }
 
   static success(message: string) {
-    console.log(`\n\n${chalk.black.bgGreen(message)}\n`);
+    Logger.newLine(2);
+    console.log(chalk.black.bgGreen(message));
+    Logger.newLine();
   }
 
   static error(message: string) {
-    console.log(`\n\n${chalk.white.bgRed(message)}\n`);
+    Logger.newLine(2);
+    console.log(chalk.white.bgRed(message));
+    Logger.newLine();
+  }
+
+  static newLine(count?: number) {
+    count = count || 1;
+    const lines = new Array(count).fill('\n');
+    console.log(lines.join(''));
   }
 
   static printTitle(message: string) {

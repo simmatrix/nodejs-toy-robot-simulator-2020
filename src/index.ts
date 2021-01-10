@@ -91,6 +91,7 @@ const subsequentPrompts = () => {
 };
 
 Logger.printTitle('Toy Robot Simulator');
+Logger.newLine();
 Logger.color(chalk.cyan).log('Example of valid commannds that you could enter:\nPLACE 2,3,W\nLEFT\nRIGHT\nMOVE\nREPORT\n');
 
 initialPrompt();

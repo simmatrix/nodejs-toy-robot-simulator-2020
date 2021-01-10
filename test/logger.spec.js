@@ -28,33 +28,38 @@ describe('LoggerClass Test', function () {
 
   it('should be able to call Logger.color().log() with a color formatter', function () {
     Logger.color(chalk.yellow).log(message);
-    expect(console.log).to.be.calledWith(`\n\n${chalk.yellow(message)}\n`);
+    expect(console.log).to.be.calledWith(chalk.yellow(message));
   });
+
+  it('should be able to add a new line', function () {
+    Logger.newLine()
+    expect(console.log).to.be.calledWith('\n')
+  })
 
   it('should be able to call Logger.info()', function () {
     Logger.info(message);
-    expect(console.log).to.be.calledWith(`\n\n${chalk.green(message)}\n`);
+    expect(console.log).to.be.calledWith(chalk.green(message));
   });
 
   it('should be able to call Logger.success()', function () {
     Logger.success(message);
-    expect(console.log).to.be.calledWith(`\n\n${chalk.black.bgGreen(message)}\n`);
+    expect(console.log).to.be.calledWith(chalk.black.bgGreen(message));
   });
 
   it('should be able to call Logger.error()', function () {
     Logger.error(message);
-    expect(console.log).to.be.calledWith(`\n\n${chalk.white.bgRed(message)}\n`);
+    expect(console.log).to.be.calledWith(chalk.white.bgRed(message));
   });
 
   it('should be able to call Logger.printTitle()', function () {
     Logger.printTitle(message);
-    const expectedOutput = `\n\n${chalk.cyan(
+    const expectedOutput = chalk.cyan(
       figlet.textSync(message, {
         font: 'Big',
         horizontalLayout: 'default',
         verticalLayout: 'default',
       })
-    )}\n`;
+    );
     expect(console.log).to.be.calledWith(expectedOutput);
   });
 
