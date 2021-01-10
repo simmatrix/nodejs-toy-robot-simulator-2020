@@ -10,7 +10,7 @@ This is a NodeJS command-line application. You may refer to the full problem sta
 
 A screenshot of running `npm test`. While development with TDD, `npm run test:watch` is being run to watch for any file changes in both the core scripts and its associated unit test scripts.
 
-![Toy Robot Screenshot](https://raw.githubusercontent.com/simmatrix/nodejs-toy-robot-simulator-2020/master/testing.png)
+![Toy Robot Screenshot](https://raw.githubusercontent.com/simmatrix/nodejs-toy-robot-simulator-2020/master/unit-test.png)
 
 # UML Diagram
 
