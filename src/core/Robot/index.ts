@@ -42,7 +42,7 @@ class Robot implements IRobot {
     return this.direction;
   }
 
-  report(): string {
+  report(): string | Error {
     try {
       return this.reporter.report(this.positions, this.direction);
     } catch (error) {
@@ -68,7 +68,7 @@ class Robot implements IRobot {
     }
   }
 
-  rotate(rotation: RobotRotation): void {
+  rotate(rotation: RobotRotation): void | Error {
     try {
       this.direction = this.rotater.rotate(this.direction, rotation) as RobotDirection;
     } catch (error) {

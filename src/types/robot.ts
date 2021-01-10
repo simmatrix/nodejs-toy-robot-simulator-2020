@@ -6,10 +6,10 @@ export default interface IRobot {
   getSafeMode(): boolean;
   getPosition(): RobotCoordinate;
   getDirection(): RobotDirection;
-  report(): string;
+  report(): string | Error;
   place(placement: string): void | Error;
   move(step?: number): void | Error;
-  rotate(rotation: RobotRotation): void;
+  rotate(rotation: RobotRotation): void | Error;
   backup(): IState;
   restore(state: IState): void;
 }
@@ -32,7 +32,7 @@ export interface IRobotRotater {
 }
 
 export interface IRobotReporter {
-  report(positions: RobotCoordinate, direction: RobotDirection): string;
+  report(positions: RobotCoordinate, direction: RobotDirection): string | Error;
 }
 
 export enum RobotDirection {
