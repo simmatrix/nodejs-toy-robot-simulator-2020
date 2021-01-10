@@ -16,6 +16,7 @@ export default interface IRobot {
 
 export interface IRobotMoverComponent {
   move(): RobotCoordinate;
+  getNewPosition(): RobotCoordinate;
 }
 
 export interface IRobotMover {
