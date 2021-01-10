@@ -19,4 +19,10 @@ describe('RobotRotaterClass Test', function () {
     const newDirection = rotater.rotate(currentDirection, RobotRotation.LEFT);
     expect(newDirection).to.equal(RobotDirection.WEST);
   });
+
+  it('should return NORTH if given current direction is WEST, and user rotate RIGHT', function () {
+    const currentDirection = RobotDirection.WEST;
+    const newDirection = rotater.rotate(currentDirection, RobotRotation.RIGHT);
+    expect(newDirection).to.equal(RobotDirection.NORTH);
+  });
 });
