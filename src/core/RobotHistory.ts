@@ -10,7 +10,7 @@ class RobotHistory {
     this.robot = robot;
   }
 
-  backup() {
+  backup(): void {
     this.states.push(this.robot.backup());
   }
 
@@ -20,11 +20,11 @@ class RobotHistory {
     this.robot.restore(lastState);
   }
 
-  getAll() {
+  getAll(): IState[] {
     return this.states;
   }
 
-  isEmpty() {
+  isEmpty(): boolean {
     return this.states.length === 0
   }
 }
