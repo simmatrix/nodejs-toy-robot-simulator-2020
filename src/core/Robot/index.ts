@@ -42,6 +42,10 @@ class Robot implements IRobot {
     return this.direction;
   }
 
+  getDimensions(): RobotCoordinate {
+    return this.dimensions;
+  }
+
   report(): string | Error {
     try {
       return this.reporter.report(this.positions, this.direction);

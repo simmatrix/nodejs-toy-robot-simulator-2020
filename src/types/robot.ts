@@ -6,6 +6,7 @@ export default interface IRobot {
   getSafeMode(): boolean;
   getPosition(): RobotCoordinate;
   getDirection(): RobotDirection;
+  getDimensions(): RobotCoordinate;
   report(): string | Error;
   place(placement: string): void | Error;
   move(step?: number): void | Error;
