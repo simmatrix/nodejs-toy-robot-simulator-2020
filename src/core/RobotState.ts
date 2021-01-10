@@ -1,12 +1,12 @@
 import RobotRequiredError from '../errors/RobotRequiredError';
+import IRobot from '../types/robot';
 import IState, { State } from '../types/state';
-import Robot from './Robot';
 
 class RobotState implements IState {
   protected state: State;
   protected date: string;
 
-  constructor(robot: Robot) {
+  constructor(robot: IRobot) {
     if (!robot) throw new RobotRequiredError();
     this.state = {
       positions: robot.getPosition(),

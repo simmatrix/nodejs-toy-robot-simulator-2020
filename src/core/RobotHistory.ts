@@ -1,11 +1,11 @@
+import IRobot from '../types/robot';
 import IState from '../types/state';
-import Robot from './Robot';
 
 class RobotHistory {
   protected states: IState[] = [];
-  protected robot: Robot;
+  protected robot: IRobot;
 
-  constructor(robot: Robot) {
+  constructor(robot: IRobot) {
     this.robot = robot;
   }
 
