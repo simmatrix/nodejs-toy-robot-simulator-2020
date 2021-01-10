@@ -12,6 +12,10 @@ A screenshot of running `npm test`. While development with TDD, `npm run test:wa
 
 ![Toy Robot Screenshot](https://raw.githubusercontent.com/simmatrix/nodejs-toy-robot-simulator-2020/master/testing.png)
 
+# UML Diagram
+
+![Toy Robot UML Diagram](https://raw.githubusercontent.com/simmatrix/nodejs-toy-robot-simulator-2020/master/uml.jpg)
+
 # Constraint
 
 Assuming that we would only have 5x5 units of "table" for the toy robot to roam about freely, without falling off.
