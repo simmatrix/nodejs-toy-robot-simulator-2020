@@ -40,9 +40,14 @@ describe('TableClass Test', function () {
     });
     const robot = robotFactory();
     const initialPlacement = '1,2,NORTH';
-    const newPlacement = '3,4,NORTH';
+    const newPlacement1 = '3,4,NORTH';
+    const newPlacement2 = '2,4,NORTH';
     table.addRobot(robot).at(initialPlacement);
-    table.place(table.getRobot()).at(newPlacement);
-    expect(table.getRobot().report()).to.be.equal(newPlacement);
+
+    table.place(table.getRobot()).at(newPlacement1);
+    expect(table.getRobot().report()).to.be.equal(newPlacement1);
+
+    table.place().at(newPlacement2);
+    expect(table.getRobot().report()).to.be.equal(newPlacement2);
   });
 });
