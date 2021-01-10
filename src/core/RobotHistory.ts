@@ -1,3 +1,4 @@
+import NoHistoryError from '../errors/NoHistoryError';
 import IRobot from '../types/robot';
 import IState from '../types/state';
 
@@ -13,10 +14,10 @@ class RobotHistory {
     this.states.push(this.robot.backup());
   }
 
-  undo() {
-    if (!this.states.length) return;
-    const lastState = this.states.pop();    
-    if (lastState) this.robot.restore(lastState);
+  undo(): void | Error {
+    if (!this.states.length) throw new NoHistoryError();;
+    const lastState = this.states.pop() as IState;
+    this.robot.restore(lastState);
   }
 
   getAll() {

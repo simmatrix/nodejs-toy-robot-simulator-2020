@@ -17,6 +17,10 @@ describe('RobotHistoryClass Test', function () {
     expect(history.isEmpty()).to.be.true;
   });
 
+  it('should throw an error if user try to undo without any previous histories', function () {
+    expect(() => history.undo()).to.throw('Unable to under as there is no histories available');
+  });
+
   it('should be able to backup the current state', function () {
     history.backup();
     const histories = history.getAll();
